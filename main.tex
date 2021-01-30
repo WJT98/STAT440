@@ -1,0 +1,427 @@
+\documentclass[12pt, oneside]{article} 
+\usepackage{amsmath, amsthm, amssymb, calrsfs, wasysym, verbatim, bbm, color, graphics, geometry, enumitem, array, multirow, hyperref, tabulary, xcolor}
+
+\usepackage{amsmath,amssymb,mathtools} % do fancy math
+\usepackage{graphicx} % import images
+\usepackage{xcolor}
+\usepackage{tikz} % draw images with latex
+\usepackage{listings} % for code 
+\usepackage{enumitem, bm, bbm}
+% \usepackage{amsfonts}
+\usepackage[onehalfspacing]{setspace}
+
+\usepackage{subcaption}
+
+
+
+
+\setlength{\parindent}{0in} % set paragraph indent
+\everymath{\displaystyle}
+\setlist{noitemsep}
+
+
+\geometry{top=1in, bottom=1in, left=1in, right=1in}
+\setlist{noitemsep}
+%\setcounter{secnumdepth}{0} % comment this out for section numbering
+\everymath{\displaystyle}
+
+\geometry{top=1in, bottom=1in, left=1in, right=1in}
+\setlist{noitemsep}
+%\setcounter{secnumdepth}{0} % comment this out for section numbering
+\everymath{\displaystyle}
+
+% Math symbols
+\newcommand*{\T}{^{\top}}
+\renewcommand*{\i}{\leftarrow}
+\newcommand*{\isim}{\overset{\text{ind}}{\sim}}
+\newcommand*{\iid}{\overset{\text{i.i.d.}}{\sim}}
+\newcommand*{\deq}{\overset{\text{d}}{=}}
+% Sets (natural numbers etc)
+\newcommand*{\IN}{\mathbb{N}} 
+\newcommand*{\IZ}{\mathbb{Z}}
+\newcommand*{\IQ}{\mathbb{Q}}
+\newcommand*{\IR}{\mathbb{R}}
+\newcommand*{\IC}{\mathbb{C}}
+% Distributions, processes
+\newcommand*{\Geo}{\operatorname{Geo}}
+\newcommand*{\Exp}{\operatorname{Exp}}
+\newcommand*{\Poi}{\operatorname{Poi}}
+\newcommand*{\NVM}{\operatorname{NVM}}
+\newcommand*{\Par}{\operatorname{Par}}
+\newcommand*{\IG}{\operatorname{IG}}
+\newcommand*{\LN}{\operatorname{LN}}
+\newcommand*{\Cauchy}{\operatorname{Cauchy}}
+\newcommand*{\Log}{\operatorname{Log}}
+\newcommand*{\U}{\operatorname{U}} % uniform distribution
+\newcommand*{\B}{\operatorname{B}}
+\newcommand*{\Bin}{\operatorname{Bin}}
+\newcommand*{\Bern}{\operatorname{Bern}}
+\newcommand*{\Beta}{\operatorname{Beta}}
+\newcommand*{\NB}{\operatorname{NB}}
+\newcommand*{\N}{\operatorname{N}}
+% Operators, functions
+\newcommand*{\I}{\mathbbm{1}} % indicator 
+\newcommand*{\rd}{\mathrm{d}} % differential in integrals 
+\renewcommand*{\mod}{\operatorname{mod}}
+\newcommand*{\arginf}{\operatorname*{arginf}}
+\newcommand*{\argsup}{\operatorname*{argsup}}
+\newcommand*{\ran}{\operatorname{ran}}
+\newcommand*{\rank}{\operatorname{rank}}
+\newcommand*{\sign}{\operatorname{sign}}
+\newcommand*{\round}{\operatorname{round}}
+\renewcommand*{\L}{\mathcal{L}}
+\renewcommand*{\Re}{\operatorname{Re}}
+\renewcommand*{\Im}{\operatorname{Im}}
+\newcommand*{\Li}{\operatorname*{Li}}
+\renewcommand*{\P}{\mathbb{P}} % probability
+\newcommand*{\E}{\mathbb{E}} % expected value 
+\newcommand*{\med}{\operatorname{med}}
+\newcommand*{\Var}{\operatorname{Var}}
+\newcommand*{\Cov}{\operatorname{Cov}}
+\newcommand*{\Cor}{\operatorname{Cor}}
+\newcommand*{\MSE}{\operatorname{MSE}}
+\newcommand*{\SE}{\operatorname{SE}}
+
+% Variables
+\newcommand*{\R}{\textsf{R}}
+\newcommand*{\eps}{\varepsilon}
+\renewcommand*{\th}{\bm{\theta}}
+\newcommand*{\ba}{\bm{a}}
+\newcommand*{\bnu}{\bm{\nu}}
+\newcommand*{\bb}{\bm{b}}
+\newcommand*{\be}{\bm{e}}
+\newcommand*{\blambda}{\bm{\lambda}}
+\newcommand*{\bzero}{\bm{0}}
+\newcommand*{\bone}{\bm{1}}
+\newcommand*{\bt}{\bm{t}}
+\newcommand*{\bx}{\bm{x}}
+\newcommand*{\by}{\bm{y}}
+\newcommand*{\bz}{\bm{z}}
+\newcommand*{\bu}{\bm{u}}
+\newcommand*{\bU}{\bm{U}}
+\newcommand*{\bv}{\bm{v}}
+\newcommand*{\bw}{\bm{w}}
+\newcommand*{\btheta}{\bm{\theta}}
+\newcommand*{\bS}{\bm{S}}
+\newcommand*{\bT}{\bm{T}}
+\newcommand*{\bZ}{\bm{Z}}
+\newcommand*{\bY}{\bm{Y}}
+\newcommand*{\bX}{\bm{X}}
+\newcommand*{\bmu}{\bm{\mu}}
+% Estimators 
+\newcommand*{\hgamma}{\widehat{\gamma}}
+\newcommand*{\halpha}{\widehat{\alpha}}
+\newcommand*{\hbeta}{\widehat{\beta}}
+\newcommand*{\hlambda}{\widehat{\lambda}}
+\newcommand*{\hmu}{\widehat{\mu}}
+\newcommand*{\hp}{\widehat{p}}
+\newcommand*{\hpi}{\widehat{\pi}}
+\newcommand*{\hr}{\widehat{r}}
+\newcommand*{\htau}{\widehat{\tau}}
+\newcommand*{\htheta}{\widehat{\theta}}
+\newcommand*{\hsigma}{\widehat{\sigma}}
+\newcommand*{\tbeta}{\widetilde{\beta}}
+\newcommand*{\tgamma}{\widetilde{\gamma}}
+\newcommand*{\tlambda}{\widetilde{\lambda}}
+\newcommand*{\tmu}{\widetilde{\mu}}
+\newcommand*{\tpi}{\widetilde{\pi}}
+\newcommand*{\tsigma}{\widetilde{\sigma}}
+\newcommand*{\ttau}{\widetilde{\tau}}
+\newcommand*{\barx}{\overline x}
+\newcommand*{\barY}{\overline Y}
+\newcommand*{\bary}{\overline y}
+\newcommand*{\perm}[2]{{}^{#1}\!P_{#2}}%
+\newcommand*{\comb}[2]{{}^{#1}C_{#2}}%
+
+\title{STAT 440}
+\date{W2021}
+
+
+\linespread{1.3}
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Chapter 1: Foundations}
+
+\subsection{Introduction}
+The probability distribution of the phenomenon X can be assumed to be either parametric or non parametric.\\
+
+Parametric($\bX \sim f(x|\theta)$): 
+\begin{itemize}
+    \item Assume the functional form f of the p.d.f. of $\bX$ is known
+    \item pd.f. depends on some unknown finite dimensional parameter $\theta$ that belongs to the parameter space $\Theta$. 
+    \item Note: A finite number of observations can only efficiently estimate a finite number of parameters.
+    \item Assume that the observations $x_1, x_2, ..., x_n$ have been generated from a parametrized probability distribution, i.e. $X_i, (1 \leq i \leq n)$
+    \item given the past observations $x_1, x_2, ..., x_{i-1}$ has a distribution with conditional p.d.f. $f_i(x_i|\theta_i,x_1,...,x_{i-1})$ on $\mathbb{R}^p$ where the parameter $\theta_i$ is unknown and the function $f_i$ is known.
+    \item This model can be then represented by the following unifying form $\bX \sim f(\bold{x}|\boldsymbol{\theta})$
+    \item Using the multiplication rule for conditional probabilities, the join p.d.f. of $\bX$ is
+    \begin{align*}
+        f(x|\theta) &= f_n(x_n|x_1,...,x_{n-1};\theta_n)f_{n-1}(x_{n-1}|x_1,...,x_{n-2};\theta_{n-1})...f(x_2|x_1;\theta_1)f(x_1;\theta_1)
+    \end{align*}
+    \item In the case of i.i.d random variables $X_1, X_2,..., X_n$ from a common distribution $f(x|\theta)$ \\ and for their corresponding we have $f_i(x_i|\theta_i,x_1,...,x_{i-1})$ = $f(x_i|\theta)$ 
+    \begin{align*}
+        f(x|\theta) &= \prod^n_{i=1}f(x_i|\theta)
+    \end{align*}
+    where $\theta = \theta_1=...=\theta_n$ and $f_1 = f_2 = ... = f_n$
+    \item Once the statistical model is identified, statistical analysis makes \emph{inferences} about the parameter $\theta$.
+    \item The observations $x_1, x_2, ..., x_n$ improve our knowledge of $\theta$ by:
+        \begin{itemize}
+            \item Estimating a function of $\theta$
+            \item Testing a claim about $\theta$
+            \item Predicting a future event in which the distribution depends on $\theta$
+        \end{itemize}
+
+\end{itemize}
+
+Non-Parametric: 
+\begin{itemize}
+    \item Assume p.d.f of $\bX$ is not known. 
+    \item Only apply non-parametric methods when the sample size becomes large or infinite.
+    \item Statistical inference must incorporate as much complexity of the observed phenomenon as possible to estimate the functional form of the underlying distribution function $f(x)$ under minimal assumptions.
+    \item Generally, the family of such distributions is infinite-dimensional as one needs to estimate $f(x)$ for any $x$ in the sample space.
+\end{itemize}
+
+\subsection{Statistical Paradigms}
+\begin{itemize}
+    \item In Bayesian statistics, we start with postulating that the parameter $\theta$ of the model is random and thus has a distribution, know as a prior distribution, with p.d.f. $\pi(\theta)$.
+    \item Using Bayes' rule to combine the prior distribution with the data model with p.d.f. $f(x|\theta)$ to come up with an updated distribution (p.d.f) of $\theta$:
+    \begin{align*}
+        \text{Posterior} = g(\theta|x) = \frac{f(x|\theta)\pi(\theta)}{\int_\Theta f(x|\theta)\pi(\theta)d\theta}
+    \end{align*}
+\end{itemize}
+
+\section{Statistical Principles}
+
+\subsection{The Sufficiency Principle}
+\begin{itemize}
+    \item \textbf{Definition 1 - Sufficient:} For $\bX \sim f(x|\theta)$, a statistic \emph{T} as a function of $\bX$ is said to be \textbf{sufficient} if the distribution of $\bX$ condition upon \emph{T}($\bX$) does not depend on $\theta$.
+        \begin{itemize}
+            \item The sufficient statistic \emph{T}($\bX$) has all information that is contained in $\bX$ about $\theta$.
+        
+            \item Under some measure theoretic regularity conditions, the \emph{Factorization Theorem} states \emph{T}($\bX$) is a sufficient statistic iff the density of $\bX$ can be written as 
+            \begin{align*}
+                f(x|\theta) = g(T(x)|\theta)h(x)
+            \end{align*}
+            for some non-negative function g and h.
+        \end{itemize}
+    
+    \item \textbf{Sufficiency Principle}: Consider a sufficient statistics $T$. If two observations $\bx$ and $\by$ are such that $T(\bx) = T(\by)$, then $\bx$ and $\by$ must lead to the same inference about $\theta$.
+    
+    \item \textbf{Rao-Blackwell Theorem}: For random variables $\bX$, and $\bY$
+    \begin{align*}
+        \text{E}(X) &=  \text{E}(\text{E}(X|Y))\\
+        \text{Var}(X) &=  \text{E}(\text{Var}(X|Y)) +  \text{Var}(\text{E}(X|Y)) \geq \text{Var}(\text{E}(X|Y))
+    \end{align*}
+    \begin{itemize}
+        \item Suppose $U(X)$ is an arbitrary statistic.
+        \item For a sufficient statistic $T(X)$, the conditional distribution $\sim U(X) | T(X)$, by definition, is known (non unknown parameters).
+        \item This implies that the conditional expectation $\text{E}(U(X)|T(X))$ is only a function of $X$ through $T(X)$ and therefore a statistic (only a function of data and not unknown parameter).
+        \item By Rao-Blackwell Theorem:
+        \begin{align*}
+            \text{E}(U(X)) &=  \text{E}(\text{E}(U(X)|T(X)))\\
+            \text{Var}(U(X)) &=  \text{E}(\text{Var}(U(X)|T(X))) +  \text{Var}(\text{E}(U(X)|T(X))) \geq \text{Var}(\text{E}(U(X)|T(X)))
+        \end{align*}
+        \item Thus, one can always restrict their inference to those procedures that are based on sufficient statistics.
+    \end{itemize}
+    
+    
+ \textbf{Example 1}: Let $X_1,...,X_k$ be a random sample from Bin($n_i,\theta$), $0 \leq \theta \leq 1$. The joint probability density function of $\bX = X_1,...,X_k$ is given by:
+ \begin{align*}
+     f(x|\theta) &= \prod_{i=1}^k \binom{n_i}{x_i} \theta^{x_i}(1-\theta)^{n_i-x_i}\\
+    &= (\frac{\theta}{1-\theta})^{\sum_{i=1}^{k}x_i}(1-\theta)^{\sum_{i=1}^{k}n_i} \prod_{i=1}^k \binom{n_i}{x_i}
+ \end{align*}
+ where $g(T(x)|\theta) = (\frac{\theta}{1-\theta})^{\sum_{i=1}^{k}x_i}(1-\theta)^{\sum_{i=1}^{k}n_i}$ and $h(x) = \binom{n_i}{x_i}$. \\
+ Thus T(X) = $\sum_{i=1}^k X_i$ is a sufficient statistic for $\theta$ or the model.
+
+ \textbf{Example 2}: Let $X_1,...,X_k$ be a random sample from N($\mu,\sigma^2$):\\
+ Applying the factorization theorem, we can show that T(X) = ($\overline{X},S^2)$, where
+ \begin{align*}
+     \overline{X} &= \frac{1}{n}\sum_{i=1}^n X_i \\
+     S^2 = &= \sum_{i=1}^n (X_i-\overline{X})^2
+ \end{align*}
+ is a sufficient statistic for the parameter $\theta = (\mu, \sigma)$, with density
+ 
+ 
+ 
+ \subsection{The Likelihood Principle}
+ A consequence of the sufficiency principle. 
+ \item For observations $x_1,...,x_n$ from a model with density function $f(x|\theta)$ the likelihood function as a function of $\theta$ is:
+ \begin{align*}
+     L(\theta|x) = \prod_{i_1}^n f(x_i|\theta)
+ \end{align*}
+ 
+ \item \textbf{(Strong) Likelihood Principle}: 
+ \begin{itemize}
+     \item L($\theta|x$) carries all the information that an observation $\bx$ has about $\theta$.
+     \item If $\bx$ and $\by$ are two observations possibly from different models with the same parameter $\theta$ such that there exists a constant \emph{c} satisfying
+     \begin{align*}
+         L_1(\theta|x) = cL_2(\theta|y)
+     \end{align*}
+     then they carry the same information about $\theta$ and must lead to identical inferences.
+ \end{itemize}
+
+ \textbf{Example}: Consider a sequence of independent Bernoulli trials such as coin flips with probability of success (obtaining Head) $0 \leq \theta \leq 1$. \\
+ Suppose we found 9 successes and 3 failures. If no additional information is available on the experiment, at least two probability models can be proposed.
+ 
+ \begin{enumerate}
+ \item Model 1
+    \begin{itemize}
+        \item A coin is flipped 12 times, X = \# of heads in 12 independent trails. 
+         \item X $\sim Bin(12, \theta)$ with observed value X = 9.
+         \begin{align*}
+             f(x|\theta) = \binom{12}{x} \theta^x (1-\theta)^{12-x} x = 0,1,...,12
+         \end{align*}
+         \item The likelihood function of the binomial model $f(x|\theta)$ based on the observed value x = 9 is
+         \begin{align*}
+             L_f(\theta|9) =\binom{12}{9} \theta^9 (1-\theta)^{3} \theta \in \Theta = (0,1)
+         \end{align*}
+    \end{itemize}
+    
+    \item Model 2
+    \begin{itemize}
+        \item A coin is flipped repeatedly until 9 heads observed.
+        \item Let N = \# of trials required to produce 9 successes.
+        \item X $\sim NBin(9, \theta)$
+        \begin{align*}
+            g(x|\theta) &= \binom{n-1}{9-1} \theta^9 (1-\theta)^{n-9} x = 9,10,11,12 \\
+        \end{align*}
+        \item For observation N = 12, the likelihood function is 
+        \begin{align*}
+            L_g(\theta|9) &=\binom{11}{8} \theta^9 (1-\theta)^{3} \theta \in \Theta = (0,1)
+        \end{align*}
+    \end{itemize}
+     
+     So the random quantity in the experiment can be either 9 or 12. The important point is that for both models, the likelihood is proportional to $\theta^9(1-\theta)^3$.
+ \end{enumerate}
+      
+Thus, the \textbf{likelihood principle} implies that the inference on $\theta$ should be identical for both models f and g. For example both likelihoods provides the estimate $\htheta = 9/12$.\\
+
+A justification of the likelihood principle is called the conditionality principle.\\
+ 
+ \textbf{Conditionality Principle}: If two experiments $\eps_1$ and $\eps_2$ on the parameter $\theta$ are available and if one of these two experiments is selected with probability p, the resulting inference on $\theta$ only depend on the selected experiment. \\
+ 
+ \textbf{Theorem 1}: The (strong) likelihood principle is equivalent to the conjunction of the sufficiency and the conditionality principles.
+ 
+ \section{Statistical Inference}
+ Let $X_1,...,X_n$ be a random sample from a distribution F(x). We are interested in some parameter $\theta = \theta(F)$ of the distribution such as mean, median, etc. 
+ The three main approaches are:
+ \begin{enumerate}
+    \item Neyman-Pearson-Wald inference (pre-experimental)
+    \item Fisherian inference(mostly post-experimental)
+    \item Bayesian inference (post-experimental approach)
+ \end{enumerate}
+ 
+ \subsection{Neyman-Pearson-Wald (NPW) Inference}
+ NPW inference began with the famous Neyman Pearson Lemma. In this approach, usually an estimating function T=T(X,$\theta)$ is constructed. The NPW inference is based on the \emph{sampling distribution} of T under repeated sampling, and the procedures are made before observing data. The sampling distribution may be known or approximated using asymptotic arguments. Examples of NPW procedures are:
+ \begin{itemize}
+     \item Unbiased estimation: An estimator U(X) is unbiased for the parameter $\gamma(\theta)$ if for all $\theta \in \Theta$
+     \begin{align*}
+         E_\theta(U(X)) = \int U(X)f_\theta(x)dx = \gamma(\theta)
+     \end{align*}
+     \item Minimum risk estimators and UMVE's
+     \item Empirical Bayes Inference
+     \item Neyman-Pearson Hypothesis Testing
+     \item Robustness
+ \end{itemize}
+ 
+ \textbf{Example 6}: Suppose that $X_1,...,X_n$ are iid with common distribution F and interest is in the mean 
+ \begin{align*}
+     \theta(F) = \int_{-\infty}^\infty xdF(x)
+ \end{align*}
+ For example, if we let F be a POI($\lambda$) distribution, then $\theta(f) = E_F(X) = \lambda$. \\
+ For an arbitrary distribution F, a NPW analysis is based on the estimating function
+ \begin{align*}
+     T(X,\theta) = \frac{\sqrt{n}(\overline{X}-\theta)}{S},
+ \end{align*}
+ where
+ \begin{align*}
+     \overline{X} &= \frac{1}{n}\sum_{i=1}^n X_i\\ 
+     S^2 &= \frac{\sum_{i=1}^n (X_i - \overline{X})^2}{n}
+ \end{align*}
+ 
+ The central limit theorem says that 
+ \begin{align*}
+     T \overset{D}{\to} N(0,1)
+ \end{align*}
+ so for n sufficiently large we can use a normal approximation to the sampling distribution of T.
+ 
+ 
+ \subsection{Fisherian Inference}
+ Let $x_1,...,x_n$ be a realization of a random sample (ie. iid) from distribution $F(x|\theta)$ with pdf $f(x|\theta), \theta \in \Theta.$ \\
+ 
+ \begin{itemize}
+     \item The likelihood function is:
+         \begin{align*}
+            L(\theta|x) = \prod_{i_1}^n f(x_i|\theta)
+         \end{align*}
+    \item  More generally, when $X_i$'s are not iid, the likelihood is defined as the joint density $f(x_1,...,x_n|\theta)$ taken as a function of $\theta$.
+    \item A point estimate $\hat{\theta}$ of $\theta$ is that value of $\theta$ which maximizes $L(\theta|x)$
+        \begin{align*}
+            \hat{\theta} = \text{arg} \max_{\theta \in \Theta} L(\theta|x)
+        \end{align*}
+    \item The maximization of likelihood equivalent to the maximization of the log likelihood function.
+    \item Under some regularity conditions, for large n:
+    \begin{align*}
+        (\hat{\theta} - \theta) N(0, J^{-1}(\theta)),
+    \end{align*}
+    where the matrix J($\theta$) is given by 
+    \begin{align*}
+        J(\theta) = E \left(- \frac{\partial^2 \ell (\theta|X)}{\partial \theta^2} \right)
+    \end{align*}
+    \item J($\theta)$ and $I(\theta;x) = -\frac{\partial^2 \ell (\theta|x)}{\partial \theta^2}$ are \textbf{(expected) Fisher information} and \textbf{Observed Fisher information}.
+    \item A \textbf{likelihood confidence region}, CR(x) should have the property that for any $\theta_0 \ in$ CR(x): 
+    \begin{align*}
+        L(\theta_0) \geq L(\theta|x), \forall \theta \notin CR(x)
+    \end{align*}
+    \item Likelihood probability statements are based on the sampling distribution of the maximum likelihood estimator under repeated sampling.
+ \end{itemize}
+ 
+ \textbf{Randomly Censored Data}: Let $T_1,...,T_n$ be idd with density f, cdf F and survivor function:
+ \begin{align*}
+     S(t) = P(T > t) = 1 - F(t)
+ \end{align*}
+ 
+ \begin{itemize}
+     \item The survivor function S(t) represents the probability of surviving beyond time t.
+     \item Let $C_1,...,C_n$ be idd with density g and cdf G. 
+     \item $T_i$ and $C_i$ are survival and censoring times for the ith individual. 
+     \item Censor can be due to time to event, loss of follow up, drop out, termination of study. 
+     \item we observe ($Y_1, \delta_1$,...,$Y_n, \delta_n$), where $Y_i$ = min($T_i, C_i$) and
+     
+\end{itemize}
+\end{itemize}
+
+
+\section{Monte Carlo Methods and Pseudo Random Numbers}
+Monte carlo methods refers to a broad range of stochastic techniques involving random numbers. 
+
+\subsection{Simple Monte Carlo}
+\begin{itemize}
+    \item Suppose we want to evaluate a multidimensional integral of a sufficiently complicated function g(x) on the region $\mathbb{X} \subset \mathbb{R}^p$ , that is:
+    \begin{align}
+        \theta = \int_\mathbb{X} g(x)dx
+    \end{align}
+    \item There are several techniques to approximate this integral in a deterministic fashion. (Simpson's rule, trapezoidal rule, gaussian quadrature)
+    \item Monte Carlo integration is a statistical method for approximating integrals.
+    \item To approximate the integral in (1), we need to assume that X is a random vector with range $\mathbb{X}$ and density function f and the integral (1) can be expressed as the expected value of a function $\delta$(X), and thus the integral in equation (1) can be written as:
+    \begin{align*}
+        \theta = E(\delta(X)) = \int_\mathbb{X} \delta(x)f(x)dx
+    \end{align*}
+    where g(x) = $\delta(x)f(x)$
+    \item Monte Carlo evaluation of this integral consists of simulating a random sample size n, $x_1,...,x_n$, from $f$ and averaging the observed values $\delta(x_1),...,\delta(x_n)$.
+    \item \textbf{Monte Carlo Estimate}:
+    \begin{align*}
+        \widehat{\theta} = \frac{\sum^n_{i=1}\delta(X_i)}{n} 
+    \end{align*}
+    is an unbiased estimate of $\theta$
+\end{itemize}
+
+
+\end{document}
